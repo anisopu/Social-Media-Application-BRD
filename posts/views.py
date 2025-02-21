@@ -43,10 +43,12 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
+
 def logout_view(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
     return redirect('home')
+
 
 @login_required
 def create_post(request):
@@ -61,6 +63,18 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, 'create_post.html', {'form': form})
+
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.user == post.user:  
+        post.delete()
+        return redirect('home')  
+    return redirect('home')
+
+
 
 @login_required
 def edit_post(request, post_id):
@@ -81,17 +95,8 @@ def edit_post(request, post_id):
 
 
 @login_required
-def profile(request, username):  # Accept username parameter
-    user = get_object_or_404(User, username=username)  # Get the user by username
-    user_posts = Post.objects.filter(user=user).order_by('-created_at')  # Fetch only their posts
+def profile(request, username):  
+    user = get_object_or_404(User, username=username)  
+    user_posts = Post.objects.filter(user=user).order_by('-created_at')  
     return render(request, 'profile.html', {'user': user, 'user_posts': user_posts})
 
-
-@login_required
-def delete_post(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-
-    if request.user == post.user:  
-        post.delete()
-        return redirect('home')  
-    return redirect('home')
