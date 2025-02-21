@@ -1,6 +1,8 @@
 # Social-Media-Application-BRD
 
-Super User:
+Use this superuser to check this programme
+
+
 username: opu
 Password: 123
 
