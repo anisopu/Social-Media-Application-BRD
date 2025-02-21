@@ -1,3 +1,10 @@
 # Social-Media-Application-BRD
 
-The project is on the process...
+Super User:
+username: opu
+Password: 123
+
+Another One
+
+username: anis
+Password: 123
