@@ -1,6 +1,6 @@
 # Social-Media-Application-BRD
 
-Use this superuser to check this programme
+Use this superusers to access this project.
 
 
 username: opu
